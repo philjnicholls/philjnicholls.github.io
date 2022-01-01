@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block masthead_size %}0.5{% endblock %}
+
+{% block title %}{{ article.title }}{% endblock %}
+{% block meta_description %}{{ article.summary|striptags}}{% endblock %}
+{% block og_title %}{{ article.title }}{% endblock %}
+{% block og_description %}{{ article.summary|safe }}{% endblock %}
+{% block og_image %}/{{ article.metadata.cover }}{% endblock %}
+{% block tw_title %}{{ article.title }}{% endblock %}
+{% block tw_description %}{{ article.summary|safe }}{% endblock %}
+{% block tw_image %}/{{ article.metadata.cover }}{% endblock %}
+{% block heading %}{{ article.title }}{% endblock %}
+
+{% block sub_heading %}{{ article.summary }}{% endblock %}
+
+{% block content %}
+
+
+
+<div class="card">
+  <div class="card-body">
+    {{ article.content|safe }}
+  </div>
+
+  <!-- Zoom JavaScript -->
+  <script src="/theme/js/jquery.zoom.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#gallery-tabContent div').zoom();
+    });
+  </script>
+
+
+  {% endblock %}
+

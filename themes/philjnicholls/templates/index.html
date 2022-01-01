@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Phil Nicholls - Full-stack Python Developer{% endblock %}
+
+{% block heading %}Phil Nicholls{% endblock %}
+{% block meta_description %}I'm a full-stack Python developer with 15 years experience working in high-tech. Find examples of my work, resume and contact details.{% endblock %}
+{% block og_title %}Phil Nicholls{% endblock %}
+{% block og_description %}I'm a full-stack Python developer with 15 years experience working in high-tech.{% endblock %}
+{% block og_image %}{{ SITEURL }}/theme/images/phil-nicholls.jpg{% endblock %}
+{% block tw_title %}Phil Nicholls{% endblock %}
+{% block tw_description %}I'm a full-stack Python developer with 15 years experience working in high-tech.{% endblock %}
+{% block tw_image %}{{ SITEURL }}/theme/images/phil-nicholls.jpg{% endblock %}
+
+{% block sub_heading %}Full-stack Python Developer with 15 years experience.{% endblock %}
+
+{% block masthead_extra %}
+<div class="d-none d-md-block">
+  <div class="d-flex flex-wrap justify-content-between mb-3">
+    <a class="flex-grow-1 mr-3 mb-3" target="_blank" title="Resume" href="https://docs.google.com/document/d/1wwO1GEZQtm2nxOYQa5NYbyzmWiri7XlfgA19cygfTEA/export?format=pdf">
+      <span class="fa-layers fa-fw fa-4x">
+        <i class="text-white far fa-file word"></i>
+        <span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-2">CV</span>
+      </span>
+
+    </a>
+    {% include 'contact_links.html' %}
+  </div>
+</div>
+<div class="d-none d-lg-block">
+  <div class="row d-flex justify-content-around">
+    <i class="fab fa-html5 fa-3x"></i>
+    <i class="fab fa-css3-alt fa-3x"></i>
+    <i class="fab fa-python fa-3x"></i>
+    <i class="fab fa-git fa-3x"></i>
+    <i class="fas fa-database fa-3x"></i>
+  </div>
+</div>
+{% endblock %}

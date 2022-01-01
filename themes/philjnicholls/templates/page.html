@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page.title }}{% endblock %}
+{% block meta_description %}{{ page.summary }}{% endblock %}
+{% block og_title %}{{ page.title }}{% endblock %}
+{% block og_description %}{{ page.summary }}{% endblock %}
+{% block tw_title %}{{ page.title }}{% endblock %}
+{% block tw_description %}{{ page.summary }}{% endblock %}
+
+
+{% block heading %}{{ page.title }}{% endblock %}
+
+
+{% block masthead_extra %}
+  {% if page.title == 'Contact' %} 
+    <div>
+      <div class="d-flex flex-wrap justify-content-between mb-3">
+        {% include 'contact_links.html' %}
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
