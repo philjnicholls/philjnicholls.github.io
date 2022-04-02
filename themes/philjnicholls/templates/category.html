@@ -9,10 +9,11 @@
 {% block heading %}{{ category }}{% endblock %}
 
 {% block content %}
+  <div class="row">
   {% for article in articles %}
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
       <div class="card m-2">
-        <img class="img-responsive card-img-top" src="{{ article.metadata.cover }}">
+        <img class="img-responsive card-img-top" src="{{ article.cover }}">
         <div class="card-body">
           <h2 class="card-title"><a href="/{{ article.url }}">{{ article.title }}</a></h2>
           <div>{{ article.summary }}</div>
@@ -20,4 +21,5 @@
       </div>
     </div>
   {% endfor %}
+  </div>
 {% endblock %}

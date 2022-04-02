@@ -6,31 +6,85 @@
 {% block meta_description %}{{ article.summary|striptags}}{% endblock %}
 {% block og_title %}{{ article.title }}{% endblock %}
 {% block og_description %}{{ article.summary|safe }}{% endblock %}
-{% block og_image %}/{{ article.metadata.cover }}{% endblock %}
+{% block og_image %}/{{ article.cover }}{% endblock %}
 {% block tw_title %}{{ article.title }}{% endblock %}
 {% block tw_description %}{{ article.summary|safe }}{% endblock %}
-{% block tw_image %}/{{ article.metadata.cover }}{% endblock %}
+{% block tw_image %}/{{ article.cover }}{% endblock %}
 {% block heading %}{{ article.title }}{% endblock %}
 
 {% block sub_heading %}{{ article.summary }}{% endblock %}
 
 {% block content %}
 
+  {% if article.category == "portfolio" %}
+    {% set features = article.features.split(',') %}
+    {% set links = article.links.split(',') %}
+    {% set gallery = article.gallery.split(',') %}
 
+    <div class="card">
+      <div class="card-body">
+        {{ article.content|safe }}
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="tab-content flex-row" id="gallery-tabContent">
+              {% for image in gallery %}
+              <div class="tab-pane fade show{% if loop.index ==1 %} active{% endif %}"
+                   id="pills-image{{ loop.index }}"
+                   role="tabpanel"
+                   aria-labelledby="pills-image{{ loop.index }}-tab">
+                <img class="img-fluid" src="{{ image }}" />
+              </div>
+              {% endfor %}
+            </div>
 
-<div class="card">
-  <div class="card-body">
-    {{ article.content|safe }}
-  </div>
+            <div class="nav flex-nowrap flex-row" id="gallery-tab" role="tablist">
+              {% for image in gallery %}
+              <a class="nav-link{% if loop.index ==1 %} active{% endif %} p-2"
+                 id="pills-image{{ loop.index }}-tab"
+                 data-toggle="pill"
+                 href="#pills-image{{ loop.index }}"
+                 role="tab"
+                 aria-controls="pills-image{{ loop.index }}"
+                 {% if loop.index ==1 %}
+                   aria-selected="true"
+                 {% endif %}
+                 >
+                <img class="img-fluid" src="{{ image }}" />
+              </a>
+              {% endfor %}
+            </div>
+          </div>
 
-  <!-- Zoom JavaScript -->
-  <script src="/theme/js/jquery.zoom.js"></script>
-  <script>
-    $(document).ready(function(){
-      $('#gallery-tabContent div').zoom();
-    });
-  </script>
+          <div class="col-md-6 col-lg-4">
+            <h2>Features</h2>
+            <ul>
+              {% for feature in features %}
+              <li>{{ feature }}</li>
+              {% endfor %}
+            </ul>
 
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <h2>Links</h2>
 
-  {% endblock %}
+            {% for link in links %}
+            {% set link = link.split('|') %}
+            <div>
+              <a href="{{ link[0] }}" target="_blank">{{ link[1] }}</a>
+            </div>
+            {% endfor %}
 
+          </div>
+        </div>
+      </div>
+
+      <!-- Zoom JavaScript -->
+      <script src="/theme/js/jquery.zoom.js"></script>
+      <script>
+        $(document).ready(function(){
+                  $('#gallery-tabContent div').zoom();
+                });
+      </script>
+  {% endif %}
+
+{% endblock %}
