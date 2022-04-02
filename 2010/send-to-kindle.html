@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="gRPC microservices to convert and send webpages to a Kindle">
+
+    <meta property="og:type" content="article" /> 
+    <meta property="og:title" content="Send To Kindle" />
+    <meta property="og:description" content="<p>gRPC microservices to convert and send webpages to a Kindle</p>" />
+    <meta property="og:image" content="//2010/images/send-to-kindle1.jpg" />
+    <meta property="og:url" content="/2010/send-to-kindle.html" />
+    <meta property="og:site_name" content="Phil Nicholls" />
+    <meta name="twitter:title" content="Send To Kindle">
+    <meta name="twitter:description" content="<p>gRPC microservices to convert and send webpages to a Kindle</p>">
+    <meta property="twitter:image" content="//2010/images/send-to-kindle1.jpg" />
+
+    <script src="https://kit.fontawesome.com/40dfc0574b.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/theme/css/mmenu-light.css" />
+
+    <script src="/theme/js/mmenu-light.js"></script>
+    <script src="/theme/js/menu.js"></script>
+    <style>
+      :root {
+        --masthead-size: 0.5;
+      }
+    </style>
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <title>Send To Kindle</title>
+  </head>
+  <body>
+    <div id="menu-button">
+    <a href="#menu">
+      <i class="fas fa-bars fa-2x"></i>
+    </a>
+    </div>
+    <nav id="menu">
+      <ul>
+        <li>
+          <a href="/">Home</span></a>
+        </li>
+        <li class="d-none">
+          <a
+            href="/blog">Blog</a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://docs.google.com/document/d/1wwO1GEZQtm2nxOYQa5NYbyzmWiri7XlfgA19cygfTEA/export?format=pdf">Resume/CV</a>
+        </li>
+        <li>
+              <a href="/category/portfolio.html">Portfolio</a>
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            href="/pages/contact.html">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <div class="masthead">
+        <header class="bg-text ">
+          <h1 class="font-weight-light">Send To Kindle</h1>
+          <h2><p>gRPC microservices to convert and send webpages to a Kindle</p></h2>
+
+        </header>
+      </div>
+
+
+    <div class="card">
+      <div class="card-body">
+        <p>Simple Flask REST API with beautifully crafted gRPC microservice architecture that takes the URL of a web page, finds the main article text, converts it to an ebook, and emails to a Kindle email address. I created endpoints to accept a URL or the actual HTML to send to the Kindle. The later endpoint supports sites with logins, popups or attempts to catch scraping tools and integrates Readability JS to identify main page content.</p>
+<p><img alt="Downloadable File" src="/2010/images/send-to-kindle1.jpg">
+<img alt="Downloadable File" src="/2010/images/send-to-kindle2.jpg">
+<img alt="Downloadable File" src="/2010/images/send-to-kindle3.jpg"></p>
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <div class="tab-content flex-row" id="gallery-tabContent">
+              <div class="tab-pane fade show active"
+                   id="pills-image1"
+                   role="tabpanel"
+                   aria-labelledby="pills-image1-tab">
+                <img class="img-fluid" src="images/send-to-kindle1.jpg" />
+              </div>
+              <div class="tab-pane fade show"
+                   id="pills-image2"
+                   role="tabpanel"
+                   aria-labelledby="pills-image2-tab">
+                <img class="img-fluid" src="images/send-to-kindle2.jpg" />
+              </div>
+              <div class="tab-pane fade show"
+                   id="pills-image3"
+                   role="tabpanel"
+                   aria-labelledby="pills-image3-tab">
+                <img class="img-fluid" src="images/send-to-kindle3.jpg" />
+              </div>
+            </div>
+
+            <div class="nav flex-nowrap flex-row" id="gallery-tab" role="tablist">
+              <a class="nav-link active p-2"
+                 id="pills-image1-tab"
+                 data-toggle="pill"
+                 href="#pills-image1"
+                 role="tab"
+                 aria-controls="pills-image1"
+                   aria-selected="true"
+                 >
+                <img class="img-fluid" src="images/send-to-kindle1.jpg" />
+              </a>
+              <a class="nav-link p-2"
+                 id="pills-image2-tab"
+                 data-toggle="pill"
+                 href="#pills-image2"
+                 role="tab"
+                 aria-controls="pills-image2"
+                 >
+                <img class="img-fluid" src="images/send-to-kindle2.jpg" />
+              </a>
+              <a class="nav-link p-2"
+                 id="pills-image3-tab"
+                 data-toggle="pill"
+                 href="#pills-image3"
+                 role="tab"
+                 aria-controls="pills-image3"
+                 >
+                <img class="img-fluid" src="images/send-to-kindle3.jpg" />
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <h2>Features</h2>
+            <ul>
+              <li>Microservice architecture built with gRPC</li>
+              <li>Built with Docker</li>
+              <li>Kubernetes ready</li>
+              <li>Uses PyTest monkeypatch to prevent email sending in test</li>
+              <li>Generates a bookmarklet during the registration process which includes a token for API authentification</li>
+              <li>Well commented and conforming to PEP8 and detailed docstrings</li>
+            </ul>
+
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <h2>Links</h2>
+
+            <div>
+              <a href="https://github.com/philjnicholls/sendtokindle" target="_blank">Source Code</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Zoom JavaScript -->
+      <script src="/theme/js/jquery.zoom.js"></script>
+      <script>
+        $(document).ready(function(){
+                  $('#gallery-tabContent div').zoom();
+                });
+      </script>
+
+    </div>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-174637728-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-174637728-1');
+    </script>
+
+
+  </body>
+</html>
