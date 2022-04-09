@@ -17,9 +17,15 @@
 {% block content %}
 
   {% if article.category == "portfolio" %}
-    {% set features = article.features.split(',') %}
-    {% set links = article.links.split(',') %}
-    {% set gallery = article.gallery.split(',') %}
+    {% if article.features is defined %}
+      {% set features = article.features.split(',') %}
+    {% endif %}
+    {% if article.links is defined %}
+      {% set links = article.links.split(',') %}
+    {% endif %}
+    {% if article.gallery is defined %}
+      {% set gallery = article.gallery.split(',') %}
+    {% endif %}
 
     <div class="card">
       <div class="card-body">
@@ -64,17 +70,17 @@
             </ul>
 
           </div>
-          <div class="col-md-6 col-lg-4">
-            <h2>Links</h2>
-
-            {% for link in links %}
-            {% set link = link.split('|') %}
-            <div>
-              <a href="{{ link[0] }}" target="_blank">{{ link[1] }}</a>
+          {% if links is defined %}
+            <div class="col-md-6 col-lg-4">
+              <h2>Links</h2>
+              {% for link in links %}
+                {% set link = link.split('|') %}
+                <div>
+                  <a href="{{ link[0] }}" target="_blank">{{ link[1] }}</a>
+                </div>
+              {% endfor %}
             </div>
-            {% endfor %}
-
-          </div>
+          {% endif %}
         </div>
       </div>
 

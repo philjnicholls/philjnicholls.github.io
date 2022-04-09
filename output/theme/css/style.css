@@ -48,6 +48,16 @@
 #menu-button a {
   color: white;
 }
+
 img[alt="Downloadable File"] {
   display: none;
+}
+
+.card {
+  height: 100%;
+}
+
+.card-img-top {
+  height: 60%;
+  object-fit: cover;
 }
