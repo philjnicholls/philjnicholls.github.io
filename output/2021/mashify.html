@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="minimal-ui, width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="A simple utilization of the Spotify API to combine multiple artists' best songs">
+
+    <meta property="og:type" content="article" /> 
+    <meta property="og:title" content="Mashify" />
+    <meta property="og:description" content="<p>A simple utilization of the Spotify API to combine multiple artists' best songs</p>" />
+    <meta property="og:image" content="//2021/images/mashify1.png" />
+    <meta property="og:url" content="/2021/mashify.html" />
+    <meta property="og:site_name" content="Phil Nicholls" />
+    <meta name="twitter:title" content="Mashify">
+    <meta name="twitter:description" content="<p>A simple utilization of the Spotify API to combine multiple artists' best songs</p>">
+    <meta property="twitter:image" content="//2021/images/mashify1.png" />
+
+    <script src="https://kit.fontawesome.com/40dfc0574b.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/theme/css/mmenu-light.css" />
+
+    <script src="/theme/js/mmenu-light.js"></script>
+    <script src="/theme/js/menu.js"></script>
+    <style>
+      :root {
+        --masthead-size: 0.5;
+      }
+    </style>
+    <link rel="stylesheet" href="/theme/css/style.css" />
+    <title>Mashify</title>
+  </head>
+  <body>
+    <div id="menu-button">
+    <a href="#menu">
+      <i class="fas fa-bars fa-2x"></i>
+    </a>
+    </div>
+    <nav id="menu">
+      <ul>
+        <li>
+          <a href="/">Home</span></a>
+        </li>
+        <li class="d-none">
+          <a
+            href="/blog">Blog</a>
+        </li>
+        <li>
+          <a
+            target="_blank"
+            href="https://docs.google.com/document/d/1wwO1GEZQtm2nxOYQa5NYbyzmWiri7XlfgA19cygfTEA/export?format=pdf">Resume/CV</a>
+        </li>
+        <li>
+              <a href="/category/portfolio.html">Portfolio</a>
+        </li>
+        <li>
+          <a
+            class="nav-link"
+            href="/pages/contact.html">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <div class="masthead">
+        <header class="bg-text ">
+          <h1 class="font-weight-light">Mashify</h1>
+          <h2><p>A simple utilization of the Spotify API to combine multiple artists' best songs</p></h2>
+
+        </header>
+      </div>
+
+
+    <div class="card">
+      <div class="card-body">
+        <p>Mash multiple artists' top tracks into a new playlist, both free and pro plans available, supported by pro token cookie.</p>
+<p><img alt="Downloadable File" src="/2021/images/mashify1.png">
+<img alt="Downloadable File" src="/2021/images/mashify2.png"></p>
+        <div class="row">
+          <div class="col-md col-lg">
+            <div class="tab-content flex-row" id="gallery-tabContent">
+              <div class="tab-pane fade show active"
+                   id="pills-image1"
+                   role="tabpanel"
+                   aria-labelledby="pills-image1-tab">
+                <img class="img-fluid" src="images/mashify1.png" />
+              </div>
+              <div class="tab-pane fade show"
+                   id="pills-image2"
+                   role="tabpanel"
+                   aria-labelledby="pills-image2-tab">
+                <img class="img-fluid" src="images/mashify2.png" />
+              </div>
+            </div>
+
+            <div class="nav flex-nowrap flex-row" id="gallery-tab" role="tablist">
+              <a class="nav-link active p-2"
+                 id="pills-image1-tab"
+                 data-toggle="pill"
+                 href="#pills-image1"
+                 role="tab"
+                 aria-controls="pills-image1"
+                   aria-selected="true"
+                 >
+                <img class="img-fluid" src="images/mashify1.png" />
+              </a>
+              <a class="nav-link p-2"
+                 id="pills-image2-tab"
+                 data-toggle="pill"
+                 href="#pills-image2"
+                 role="tab"
+                 aria-controls="pills-image2"
+                 >
+                <img class="img-fluid" src="images/mashify2.png" />
+              </a>
+            </div>
+          </div>
+
+          <div class="col-md col-lg">
+            <h2>Features</h2>
+            <ul>
+              <li>AJAX artist lookup</li>
+              <li> Oauth 2.0 authorization</li>
+              <li> fabric2 deployment scripting</li>
+            </ul>
+
+          </div>
+            <div class="col-md col-lg">
+              <h2>Links</h2>
+                <div>
+                  <a href="https://mashify.co" target="_blank">Demo</a>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <!-- Zoom JavaScript -->
+      <script src="/theme/js/jquery.zoom.js"></script>
+      <script>
+        $(document).ready(function(){
+                  $('#gallery-tabContent div').zoom();
+                });
+      </script>
+
+    </div>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-174637728-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'UA-174637728-1');
+    </script>
+
+
+  </body>
+</html>
