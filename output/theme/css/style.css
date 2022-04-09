@@ -49,10 +49,6 @@
   color: white;
 }
 
-img[alt="Downloadable File"] {
-  display: none;
-}
-
 .card {
   height: 100%;
 }

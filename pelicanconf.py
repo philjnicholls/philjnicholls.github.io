@@ -35,3 +35,7 @@ DEFAULT_PAGINATION = 10
 #RELATIVE_URLS = True
 
 THEME = 'themes/philjnicholls'
+
+PHOTO_LIBRARY = '~/projects/philjnicholls.github.io/content/images'
+PHOTO_ARTICLE = (667, 500, 80)
+PHOTO_SQUARE_THUMB = True

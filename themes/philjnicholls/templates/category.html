@@ -13,7 +13,9 @@
   {% for article in articles %}
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 mt-2">
       <div class="card">
-        <img class="img-responsive card-img-top" src="{{ article.cover }}">
+        <a href="/{{ article.url }}">
+          <img class="img-responsive card-img-top" src="{{ article.cover }}">
+        </a>
         <div class="card-body">
           <h2 class="card-title"><a href="/{{ article.url }}">{{ article.title }}</a></h2>
           <div>{{ article.summary }}</div>
