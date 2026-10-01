@@ -1,0 +1,167 @@
+# All site content lives here. Edit this file, then run `python build.py`.
+
+site:
+  url: https://philjnicholls.com
+  title: Phil Nicholls, senior Python and PostGIS engineer
+  description: >-
+    Senior Python/Django and PostGIS engineer who builds and runs real-time
+    geospatial systems, including a wildlife early-warning platform used in
+    Israel and Italy. Available for remote contracts.
+
+person:
+  name: Phil Nicholls
+  role: Senior Python backend engineer and systems architect
+  location: Ubud, Bali (UTC+8)
+  # File name in static/img/ without extension (needs .jpg and .webp). Empty to hide.
+  photo: phil
+  availability: Open to long-term, fully remote contracts with one client.
+
+contact:
+  email: phil@philjnicholls.com
+  # Set to an empty string to hide the phone number.
+  phone: "+44 7545 968 908"
+  linkedin: https://www.linkedin.com/in/philjnicholls/
+  github: https://github.com/philjnicholls
+
+hero:
+  lead: >-
+    I build and run real-time geospatial systems. My early-warning platform
+    tracks 1,282 tagged vultures, eagles, kites and ravens and alerts rangers
+    within about three minutes of a suspected poisoning or death. It has saved
+    birds' lives in Israel and is now used by Italy's ISPRA.
+  caption: >-
+    An illustrative GPS track. The platform turns patterns like a sudden,
+    motionless landing into a ranger alert.
+
+about:
+  - >-
+    I'm a senior Python/Django engineer with 20+ years in software, the last
+    5+ fully remote. I own systems end to end: architecture, PostGIS
+    performance, Linux operations, deployment and observability.
+  - >-
+    I work AI-first, using Claude Code with custom per-app skills to
+    standardise deployments and speed up review, and I ship applied AI such
+    as a computer-vision service that identifies species in camera-trap images.
+
+work:
+  - title: Wildlife early-warning platform
+    org: Israel Nature and Parks Authority
+    facts:
+      - "1,282 actively tagged birds"
+      - "118.8 million location records, about 56,600 more a day"
+      - "About 3 minutes from GPS fix to ranger alert"
+    body: >-
+      I inherited an outdated prototype and rebuilt it as a horizontally
+      scalable pipeline on Celery, RabbitMQ and PostGIS. Twelve telemetry files
+      arrive every minute; each fix becomes metrics, behavioural states and
+      events such as suspected mortality, suspected poisoning, immobility,
+      wind-farm entry and low battery. Alerts go to regional and species ranger
+      groups on Telegram. A scenario test suite replays real captured telemetry
+      and catches performance regressions before release. Rangers have used the
+      alerts to save birds, some more than once, and Italy's national
+      environmental institute, ISPRA, now runs its own birds through it.
+  - title: Computer vision for camera traps
+    org: Israel Nature and Parks Authority
+    body: >-
+      A gRPC inference service, secured with mutual TLS, that runs the
+      MegaDetector model on camera-trap images with species classification and
+      people detection, cutting manual image review for field staff.
+  - title: Rules and automation engine
+    org: Israel Nature and Parks Authority
+    body: >-
+      A configurable rules engine for the Authority's core observation and
+      enforcement platform, a Django monolith of about 130 apps. Nested
+      condition groups with lazy evaluation and caching, time-based rules,
+      reversible actions and Celery execution let staff automate workflows
+      without code changes.
+  - title: Planning and permits platform
+    org: Israel Nature and Parks Authority
+    body: >-
+      Tracks development plans and permit applications against protected
+      land: integrates with the national permit-licensing API, ingests Office
+      365 email, extracts geometry from DWG/DXF and shapefiles, and measures
+      development encroachment into ecological corridors.
+  - title: 15x faster overnight data transfer
+    org: Israel Nature and Parks Authority
+    body: >-
+      Re-engineered a data-transfer API as a streaming pipeline, cutting its
+      runtime from up to 5 hours to 20 minutes.
+
+projects:
+  - title: Guru Shishya
+    url: https://gurushishya.philjnicholls.com
+    body: >-
+      A practice partner for Indian classical music. Students hear a short
+      phrase and play or sing it back, and are scored on notes, order and
+      timing, working through raga-based lessons from first steps to alap and
+      meend. A personal project, designed and built end to end.
+
+experience:
+  - org: Israel Nature and Parks Authority
+    role: Lead Backend & GIS Engineer (contract, fully remote)
+    dates: May 2021 – present
+    summary: >-
+      Lead engineer in a four-developer team running eight production
+      Django/PostGIS systems: wildlife telemetry, the national field-observation
+      and enforcement platform, planning permits, veterinary lab results and
+      public portals. About 5,000 commits since 2021.
+    points:
+      - Integrated NASA VIIRS and MODIS fire detections, matched against burn permits, nature reserves and waste sites.
+      - Built predictive Prometheus/Grafana alerting (queue depth, backup age, forecast days until disks fill) plus Sentry.
+      - Remediated penetration-test findings and added mutual-TLS service authentication, ClamAV upload scanning and encryption at rest.
+      - Migrated apps to Django 5 and Python 3.12, squashed migrations across 84 apps and moved deployments to Ansible.
+      - Maintain the shared library every NPA app depends on, and designed lab-based technical interviews for hiring.
+  - org: Freelance
+    role: Senior Python & Backend Developer
+    dates: Aug 2015 – May 2021
+    points:
+      - Designed and deployed gRPC microservices for distributed data processing.
+      - Built scraping and automated marketing-arbitrage engines that analysed high-volume web data in real time.
+  - org: Semantico, UK
+    role: Technical Project Manager
+    dates: Jun 2012 – Aug 2015
+    points:
+      - Led Agile teams delivering publishing platforms for UK and US clients, with budgets of $100k–$1M.
+      - Launched the first ORCID author-identification integration in academic publishing.
+      - Delivered OnePetro.org, indexing 145,000 journals into Solr.
+  - org: CWT Digital, UK
+    role: Web Developer & Technical Project Manager
+    dates: May 2008 – Jun 2012
+    points:
+      - Built a white-label cruise-booking framework that cut client onboarding from weeks to days.
+  - org: Eversheds LLP, UK
+    role: Analyst Programmer & Business Analyst
+    dates: Oct 2004 – May 2008
+    points:
+      - Built ETL moving hundreds of millions of records, and migration tooling for 5,000+ staff.
+  - org: ComponentSource, UK
+    role: Lead Analyst Programmer
+    dates: Oct 2000 – Oct 2003
+    points:
+      - Lead developer on component-reuse products; XML and SOAP B2B interfaces.
+
+skills:
+  - group: Backend
+    items: [Python, Django, GeoDjango, Celery, RabbitMQ, REST APIs, gRPC, streaming pipelines]
+  - group: Data and GIS
+    items: [PostgreSQL, PostGIS, spatial query optimisation, geometry cleaning, GPS and accelerometer telemetry, geofencing]
+  - group: Applied AI
+    items: [computer vision, MegaDetector, AI-assisted engineering with Claude Code]
+  - group: Operations
+    items: [Ubuntu, Ansible, Nginx, zero-downtime deployment, Prometheus, Grafana, Sentry, security hardening]
+  - group: Leadership
+    items: [architecture decisions, technical hiring, stakeholder communication, PRINCE2]
+
+education:
+  - name: freeCodeCamp certifications
+    detail: Scientific Computing with Python; JavaScript Algorithms and Data Structures; Front End Libraries; Responsive Web Design
+    year: "2020"
+  - name: PRINCE2 Practitioner
+    detail: Axelos
+    year: "2015"
+  - name: Business Analysis Essentials; Requirements Engineering
+    detail: ISEB
+    year: "2007"
+  - name: Information Technology, Psychology and Sociology
+    detail: St. Vincent College
+    year: "1999"

@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% block main %}
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <h1 id="hero-title" class="hero__name">{{ person.name }}</h1>
+          <p class="hero__role">{{ person.role }}</p>
+          <p class="hero__lead">{{ hero.lead }}</p>
+          <ul class="links" aria-label="Contact">
+            <li><a class="links__primary" href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
+            <li><a href="{{ contact.linkedin }}">LinkedIn</a></li>
+            <li><a href="{{ contact.github }}">GitHub</a></li>
+          </ul>
+        </div>
+        {% if person.photo %}
+        <picture class="hero__photo">
+          <source srcset="img/{{ person.photo }}.webp" type="image/webp">
+          <img src="img/{{ person.photo }}.jpg" width="480" height="600" alt="Portrait of {{ person.name }}">
+        </picture>
+        {% endif %}
+      </div>
+
+      <figure class="map">
+        <svg viewBox="0 0 {{ map.w }} {{ map.h }}" preserveAspectRatio="xMidYMid slice" role="img"
+             aria-label="A bird's GPS track across a contour map, ending in a suspected mortality alert">
+          <g class="map__contours">
+          {% for d in map.contours %}
+            <path d="{{ d }}"/>
+          {% endfor %}
+          </g>
+          <path class="map__track" d="{{ map.track.path }}" pathLength="1"/>
+          <g class="map__fixes">
+          {% for x, y in map.track.fixes %}
+            <circle cx="{{ x|n }}" cy="{{ y|n }}" r="2.4"/>
+          {% endfor %}
+          </g>
+          {% set lx, ly = map.track.landing %}
+          <g class="map__alert">
+          {% for x, y in map.track.cluster %}
+            <circle class="map__cluster" cx="{{ x|n }}" cy="{{ y|n }}" r="2.4"/>
+          {% endfor %}
+            <circle class="map__ring" cx="{{ lx|n }}" cy="{{ ly|n }}" r="17"/>
+            <text class="map__label" x="{{ lx|n }}" y="{{ (ly + 50)|n }}" text-anchor="middle">Suspected mortality: rangers alerted</text>
+          </g>
+        </svg>
+        <figcaption class="wrap">{{ hero.caption }}</figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <h2 id="about-title">About</h2>
+        {% for p in about %}
+        <p class="prose">{{ p }}</p>
+        {% endfor %}
+        <p class="prose prose--note">{{ person.availability }} Based in {{ person.location }}.</p>
+      </div>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <h2 id="work-title">Selected work</h2>
+        {% for item in work %}
+        <article class="work{% if loop.first %} work--lead{% endif %}">
+          <h3>{{ item.title }}</h3>
+          <p class="work__org">{{ item.org }}</p>
+          {% if item.facts %}
+          <ul class="facts">
+            {% for f in item.facts %}<li>{{ f }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+          <p class="prose">{{ item.body }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <h2 id="projects-title">Projects</h2>
+        {% for p in projects %}
+        <article class="project">
+          <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
+          <p class="project__url">{{ p.url|replace("https://", "") }}</p>
+          <p class="prose">{{ p.body }}</p>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="wrap">
+        <h2 id="experience-title">Experience</h2>
+        <ol class="timeline">
+          {% for job in experience %}
+          <li class="job">
+            <p class="job__dates">{{ job.dates }}</p>
+            <div class="job__body">
+              <h3>{{ job.org }}</h3>
+              <p class="job__role">{{ job.role }}</p>
+              {% if job.summary %}<p class="prose">{{ job.summary }}</p>{% endif %}
+              <ul class="points">
+                {% for pt in job.points %}<li>{{ pt }}</li>{% endfor %}
+              </ul>
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <h2 id="skills-title">Skills</h2>
+        <dl class="skills">
+          {% for s in skills %}
+          <div>
+            <dt>{{ s.group }}</dt>
+            <dd>{{ s['items']|join(", ") }}</dd>
+          </div>
+          {% endfor %}
+        </dl>
+        <h2 class="subhead">Education and certifications</h2>
+        <ul class="certs">
+          {% for e in education %}
+          <li><span class="certs__name">{{ e.name }}</span> <span class="certs__detail">{{ e.detail }}, {{ e.year }}</span></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <h2 id="contact-title">Contact</h2>
+        <p class="prose">{{ person.availability }} The quickest way to reach me is email.</p>
+        <p class="contact__email"><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+        <ul class="contact__list">
+          {% if contact.phone %}<li><span>Phone and WhatsApp</span> <a href="{{ contact.phone|tel }}">{{ contact.phone }}</a></li>{% endif %}
+          <li><span>LinkedIn</span> <a href="{{ contact.linkedin }}">linkedin.com/in/philjnicholls</a></li>
+          <li><span>GitHub</span> <a href="{{ contact.github }}">github.com/philjnicholls</a></li>
+        </ul>
+      </div>
+    </section>
+{% endblock %}
