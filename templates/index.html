@@ -20,30 +20,10 @@
         {% endif %}
       </div>
 
-      <figure class="map">
-        <svg viewBox="0 0 {{ map.w }} {{ map.h }}" preserveAspectRatio="xMidYMid slice" role="img"
-             aria-label="A bird's GPS track across a contour map, ending in a suspected mortality alert">
-          <g class="map__contours">
-          {% for d in map.contours %}
-            <path d="{{ d }}"/>
-          {% endfor %}
-          </g>
-          <path class="map__track" d="{{ map.track.path }}" pathLength="1"/>
-          <g class="map__fixes">
-          {% for x, y in map.track.fixes %}
-            <circle cx="{{ x|n }}" cy="{{ y|n }}" r="2.4"/>
-          {% endfor %}
-          </g>
-          {% set lx, ly = map.track.landing %}
-          <g class="map__alert">
-          {% for x, y in map.track.cluster %}
-            <circle class="map__cluster" cx="{{ x|n }}" cy="{{ y|n }}" r="2.4"/>
-          {% endfor %}
-            <circle class="map__ring" cx="{{ lx|n }}" cy="{{ ly|n }}" r="17"/>
-            <text class="map__label" x="{{ lx|n }}" y="{{ (ly + 50)|n }}" text-anchor="middle">Suspected mortality: rangers alerted</text>
-          </g>
-        </svg>
-        <figcaption class="wrap">{{ hero.caption }}</figcaption>
+      <figure class="map wrap">
+        <img src="img/workspace.jpg" width="1376" height="768" decoding="async"
+             alt="A terminal workspace: htop, a Django view in Neovim, a GPS track on a contour map and GDAL commands">
+        <figcaption>{{ hero.caption }}</figcaption>
       </figure>
     </section>
 

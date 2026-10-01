@@ -20,7 +20,7 @@ python build.py --serve    # renders, then previews at http://localhost:8000
 | Page structure | `templates/index.html` (sections), `templates/base.html` (head, nav, footer) |
 | Colours, fonts, spacing | `static/css/site.css` (tokens at the top) |
 | Profile photo | `static/img/phil.jpg` and `phil.webp` (480 × 600) |
-| Hero map | `contour_paths()` and `flight_track()` in `build.py` |
+| Hero image | `static/img/workspace.jpg` (1376 × 768) |
 
 Set `phone: ""` in `site.yaml` to hide the phone number, or `photo: ""` to hide
 the portrait. To add a project, add another entry under `projects:`.

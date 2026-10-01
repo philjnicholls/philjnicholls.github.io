@@ -129,42 +129,16 @@ h1, h2, h3 { font-family: var(--display); margin: 0; color: var(--ink); }
 }
 .links__primary { font-weight: 650; }
 
-/* The map: the one bold element on the page */
-.map { margin: clamp(2.5rem, 6vw, 4rem) 0 0; }
-.map svg {
-  display: block; width: 100%;
-  height: clamp(230px, 36vw, 440px);
-  border-block: 1px solid var(--rule);
-  background: var(--paper-raised);
-}
-.map__contours path { fill: none; stroke: var(--contour); stroke-width: 1.1; }
-.map__track {
-  fill: none; stroke: var(--route); stroke-width: 2.4;
-  stroke-linecap: round; stroke-linejoin: round;
-  stroke-dasharray: 1; stroke-dashoffset: 0;
-}
-.map__fixes circle { fill: var(--paper-raised); stroke: var(--route); stroke-width: 1.4; }
-.map__cluster { fill: var(--alert); }
-.map__ring { fill: none; stroke: var(--alert); stroke-width: 2.2; }
-.map__label {
-  font-family: var(--display); font-size: 21px; font-weight: 650;
-  fill: var(--alert);
-  paint-order: stroke; stroke: var(--paper-raised); stroke-width: 5px; stroke-linejoin: round;
+/* The hero image: the one bold element on the page */
+.map { margin: clamp(2.5rem, 6vw, 4rem) auto 0; }
+.map img {
+  display: block; width: 100%; height: auto;
+  border: 1px solid var(--rule); border-radius: 4px;
 }
 .map figcaption {
   font-family: var(--display); font-size: var(--step--1); color: var(--muted);
-  padding-top: 0.7rem; max-width: 68rem;
+  padding-top: 0.7rem;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .map__track { stroke-dashoffset: 1; animation: draw 2.8s cubic-bezier(.45,.05,.3,1) 0.3s forwards; }
-  .map__fixes { opacity: 0; animation: appear 0.6s ease-out 2.4s forwards; }
-  .map__alert { opacity: 0; animation: appear 0.5s ease-out 3.1s forwards; }
-  .map__ring { transform-box: fill-box; transform-origin: center; animation: ping 1.2s ease-out 3.1s 2; }
-}
-@keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes appear { to { opacity: 1; } }
-@keyframes ping { 0% { transform: scale(0.4); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
 
 /* Sections */
 .section { padding: clamp(3.5rem, 8vw, 6rem) 0 0; }

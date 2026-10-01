@@ -30,8 +30,8 @@ hero:
     within about three minutes of a suspected poisoning or death. It has saved
     birds' lives in Israel and is now used by Italy's ISPRA.
   caption: >-
-    An illustrative GPS track. The platform turns patterns like a sudden,
-    motionless landing into a ranger alert.
+    Where the work happens: Django, PostGIS and GDAL in one terminal, with
+    GPS tracks drawn on contour maps.
 
 about:
   - >-
