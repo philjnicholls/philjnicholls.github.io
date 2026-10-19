@@ -10,12 +10,14 @@
   <meta property="og:title" content="{{ site.title }}">
   <meta property="og:description" content="{{ site.description }}">
   <meta property="og:url" content="{{ site.url }}/">
-  <meta name="theme-color" content="#e6ebe4" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#14211b" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23c2412d' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23c2412d'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#f4f6f2" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="css/brand.css">
   <link rel="stylesheet" href="css/site.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Person","name":"{{ person.name }}","jobTitle":"{{ person.role }}","email":"mailto:{{ contact.email }}","url":"{{ site.url }}","sameAs":["{{ contact.linkedin }}","{{ contact.github }}"]}
@@ -23,20 +25,39 @@
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="topbar">
-    <a class="topbar__name" href="#top">{{ person.name }}</a>
-    <nav aria-label="Sections">
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
   <main id="main">
 {% block main %}{% endblock %}
   </main>
-  <footer class="footer">
-    <p>&copy; {{ year }} {{ person.name }}. Built with a small Python generator and served as static HTML.</p>
+  <footer class="footer wrap">
+    <p class="comment">&copy; {{ year }} {{ person.name }}. Built with a small Python generator and served as static HTML.</p>
   </footer>
+  {# A tmux window list: the window for the section in view is the one amber item. #}
+  <nav class="statusbar" aria-label="Sections">
+    <div class="statusbar__windows"><span class="session">[pjn]</span>
+      {% for w in nav %}<a href="#{{ w }}">{{ loop.index0 }}:{{ w }}</a>{% endfor %}
+    </div>
+    <div class="statusbar__info">{{ person.place }} · {{ person.tz }}</div>
+  </nav>
+  <script>
+    // Mark the window for the section in view; at the top the hero cursor is the amber item.
+    (() => {
+      const links = [...document.querySelectorAll(".statusbar a")];
+      const sections = links.map((a) => document.querySelector(a.hash));
+      const update = () => {
+        const line = window.innerHeight * 0.4;
+        const atEnd = window.innerHeight + window.scrollY >= document.body.scrollHeight - 4;
+        let current = null, best = -Infinity;
+        sections.forEach((s, i) => {
+          const top = atEnd ? s.offsetTop : s.getBoundingClientRect().top;
+          if ((atEnd || top <= line) && top > best) { best = top; current = links[i]; }
+        });
+        if (window.scrollY < 40) current = null;
+        links.forEach((a) => a === current ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+      };
+      addEventListener("scroll", update, { passive: true });
+      addEventListener("resize", update);
+      update();
+    })();
+  </script>
 </body>
 </html>

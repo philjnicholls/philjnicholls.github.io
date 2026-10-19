@@ -1,0 +1,70 @@
+/* Phil J Nicholls · terminal brand v1 (Oct 2026)
+   Drop into philjnicholls.com. Dark is the default; light follows the OS. */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
+
+:root {
+  --bg: #14211B;      /* background (matches existing theme-color) */
+  --deep: #0C1511;    /* status bar, code blocks, cards */
+  --fg: #DCE6DE;      /* body text */
+  --dim: #8FA096;     /* comments, secondary */
+  --green: #7FD18B;   /* prompts, links */
+  --amber: #F2B84B;   /* cursor, active item: once per view */
+  --cyan: #6FC3DF;    /* paths, values */
+  --coral: #F07167;   /* errors, "avoid" */
+  --border: #2E4A3C;
+
+  --font: "JetBrains Mono", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  --h1: 2.75rem;   /* 44px */
+  --h2: 1.75rem;   /* 28px */
+  --body: 1.0625rem; /* 17px */
+  --label: 0.875rem; /* 14px */
+  --radius: 6px;
+  --gap: 1.5rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #F4F6F2; --deep: #E3E9E4; --fg: #14211B; --dim: #56645C;
+    --green: #2B7A4B; --amber: #9A6200; --cyan: #1C6E8C; --coral: #B03A2E; --border: #C7D2CA;
+  }
+}
+
+* { box-sizing: border-box; }
+html { background: var(--bg); color: var(--fg); font: 400 var(--body)/1.6 var(--font); font-feature-settings: "calt" 1; }
+body { margin: 0; padding-bottom: 3rem; } /* room for the pinned status bar */
+h1 { font-size: var(--h1); font-weight: 700; line-height: 1.1; margin: .25em 0; }
+h2 { font-size: var(--h2); font-weight: 700; line-height: 1.2; }
+a { color: var(--green); text-underline-offset: 3px; }
+a:hover { color: var(--amber); }
+code, pre { background: var(--deep); border-radius: var(--radius); }
+pre { padding: 1rem; overflow-x: auto; }
+::selection { background: var(--amber); color: var(--deep); }
+
+/* $ prompt line:  <p class="prompt"><span class="user">phil@ubud</span><span class="path">:~</span>$ whoami</p> */
+.prompt { color: var(--fg); margin: 0; }
+.prompt .user { color: var(--green); }
+.prompt .path { color: var(--cyan); }
+.comment { color: var(--dim); }
+.comment::before { content: "# "; }
+
+/* block cursor */
+.cursor { display: inline-block; width: .6em; height: 1.15em; vertical-align: text-bottom; background: var(--amber); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+
+/* tmux window list as site nav, pinned to the bottom */
+.statusbar { position: fixed; inset: auto 0 0 0; display: flex; justify-content: space-between; gap: 1rem;
+  padding: .5rem 1rem; background: var(--deep); font-size: var(--label); color: var(--dim); z-index: 10; }
+.statusbar .session { color: var(--green); font-weight: 700; }
+.statusbar a { color: var(--dim); text-decoration: none; margin-right: 1ch; }
+.statusbar a[aria-current="page"] { color: var(--amber); font-weight: 700; }
+.statusbar a[aria-current="page"]::after { content: "*"; }
+
+/* htop-style meters:  <div class="meter" style="--v:.8"><span>birds</span><b></b><span>1,282</span></div> */
+.meter { display: grid; grid-template-columns: 12ch 1fr auto; gap: 1ch; align-items: center; font-size: var(--label); }
+.meter b { height: .9em; background: linear-gradient(90deg, var(--green) calc(var(--v) * 100%), var(--border) 0); border-radius: 2px; }
+.meter span:last-child { color: var(--cyan); }
+
+/* pane / card */
+.pane { background: var(--deep); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; }
+.pane > h3 { margin-top: 0; color: var(--green); font-size: 1rem; }

@@ -12,6 +12,9 @@ person:
   name: Phil Nicholls
   role: Senior Python backend engineer and systems architect
   location: Ubud, Bali (UTC+8)
+  # Shown on the right of the status bar.
+  place: ubud
+  tz: UTC+8
   # File name in static/img/ without extension (needs .jpg and .webp). Empty to hide.
   photo: phil
   availability: Open to long-term, fully remote contracts with one client.
@@ -23,7 +26,27 @@ contact:
   linkedin: https://www.linkedin.com/in/philjnicholls/
   github: https://github.com/philjnicholls
 
+# Status-bar windows, in order: each is a section id.
+nav: [work, experience, projects, contact]
+
 hero:
+  # The one-line pitch under the name; LinkedIn's About opens with it word for word.
+  pitch: >-
+    Senior Python backend engineer and systems architect. I build and run
+    real-time geospatial systems.
+  # The comment line under the pitch, shown after "# ".
+  note: open to long-term, fully remote contracts · UTC+8
+  # htop-style meters under the hero; fill is 0 to 1.
+  stats:
+    - label: birds
+      value: 1,282 tagged
+      fill: 0.85
+    - label: fix→alert
+      value: ~3 min
+      fill: 0.95
+    - label: software
+      value: 20+ yrs
+      fill: 1
   lead: >-
     I build and run real-time geospatial systems. My early-warning platform
     tracks 1,282 tagged vultures, eagles, kites and ravens and alerts rangers
@@ -141,15 +164,15 @@ experience:
       - Lead developer on component-reuse products; XML and SOAP B2B interfaces.
 
 skills:
-  - group: Backend
+  - group: backend
     items: [Python, Django, GeoDjango, Celery, RabbitMQ, REST APIs, gRPC, streaming pipelines]
-  - group: Data and GIS
+  - group: data and gis
     items: [PostgreSQL, PostGIS, spatial query optimisation, geometry cleaning, GPS and accelerometer telemetry, geofencing]
-  - group: Applied AI
+  - group: applied ai
     items: [computer vision, MegaDetector, AI-assisted engineering with Claude Code]
-  - group: Operations
+  - group: operations
     items: [Ubuntu, Ansible, Nginx, zero-downtime deployment, Prometheus, Grafana, Sentry, security hardening]
-  - group: Leadership
+  - group: leadership
     items: [architecture decisions, technical hiring, stakeholder communication, PRINCE2]
 
 education:

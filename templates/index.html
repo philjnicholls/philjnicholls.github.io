@@ -1,16 +1,20 @@
 {% extends "base.html" %}
+{# Headings are shell commands; screen readers get the plain section name. #}
+{% macro cmd(id, command, name) %}<h2 id="{{ id }}" class="cmd"><span aria-hidden="true"><span class="cmd__prompt">$</span> {{ command }}</span><span class="sr-only">{{ name }}</span></h2>{% endmacro %}
 {% block main %}
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="wrap hero__grid">
+    <section class="hero wrap" id="top" aria-labelledby="hero-title">
+      <div class="hero__grid">
         <div class="hero__text">
-          <h1 id="hero-title" class="hero__name">{{ person.name }}</h1>
-          <p class="hero__role">{{ person.role }}</p>
-          <p class="hero__lead">{{ hero.lead }}</p>
+          <p class="prompt"><span class="user">phil@{{ person.place }}</span><span class="path">:~</span>$ whoami</p>
+          <h1 id="hero-title">{{ person.name }}</h1>
+          <p class="hero__pitch">{{ hero.pitch }}</p>
+          <p class="comment">{{ hero.note }}</p>
           <ul class="links" aria-label="Contact">
-            <li><a class="links__primary" href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
-            <li><a href="{{ contact.linkedin }}">LinkedIn</a></li>
-            <li><a href="{{ contact.github }}">GitHub</a></li>
+            <li><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></li>
+            <li><a href="{{ contact.linkedin }}">linkedin</a></li>
+            <li><a href="{{ contact.github }}">github</a></li>
           </ul>
+          <p class="prompt"><span class="user">phil@{{ person.place }}</span><span class="path">:~</span>$ <span class="cursor" aria-hidden="true"></span></p>
         </div>
         {% if person.photo %}
         <picture class="hero__photo">
@@ -20,105 +24,104 @@
         {% endif %}
       </div>
 
-      <figure class="map wrap">
+      <section class="stats" aria-label="Wildlife early-warning platform in numbers">
+        {% for s in hero.stats %}
+        <div class="meter" style="--v:{{ s.fill }}"><span>{{ s.label }}</span><b></b><span>{{ s.value }}</span></div>
+        {% endfor %}
+      </section>
+
+      <figure class="shot pane">
         <img src="img/workspace.jpg" width="1376" height="768" decoding="async"
              alt="A terminal workspace: htop, a Django view in Neovim, a GPS track on a contour map and GDAL commands">
-        <figcaption>{{ hero.caption }}</figcaption>
+        <figcaption class="comment">{{ hero.caption }}</figcaption>
       </figure>
     </section>
 
-    <section class="section" id="about" aria-labelledby="about-title">
-      <div class="wrap">
-        <h2 id="about-title">About</h2>
-        {% for p in about %}
-        <p class="prose">{{ p }}</p>
-        {% endfor %}
-        <p class="prose prose--note">{{ person.availability }} Based in {{ person.location }}.</p>
-      </div>
+    <section class="section wrap" aria-labelledby="about">
+      {{ cmd("about", "cat about.md", "About") }}
+      <p class="prose">{{ hero.lead }}</p>
+      {% for p in about %}
+      <p class="prose">{{ p }}</p>
+      {% endfor %}
+      <p class="prose comment">{{ person.availability }} Based in {{ person.location }}.</p>
     </section>
 
-    <section class="section" id="work" aria-labelledby="work-title">
-      <div class="wrap">
-        <h2 id="work-title">Selected work</h2>
+    <section class="section wrap" aria-labelledby="work">
+      {{ cmd("work", "ls ~/work", "Selected work") }}
+      <div class="panes">
         {% for item in work %}
-        <article class="work{% if loop.first %} work--lead{% endif %}">
+        <article class="pane{% if loop.first %} pane--lead{% endif %}">
           <h3>{{ item.title }}</h3>
-          <p class="work__org">{{ item.org }}</p>
+          <p class="meta">{{ item.org }}</p>
           {% if item.facts %}
           <ul class="facts">
             {% for f in item.facts %}<li>{{ f }}</li>{% endfor %}
           </ul>
           {% endif %}
-          <p class="prose">{{ item.body }}</p>
+          <p>{{ item.body }}</p>
         </article>
         {% endfor %}
       </div>
     </section>
 
-    <section class="section" id="projects" aria-labelledby="projects-title">
-      <div class="wrap">
-        <h2 id="projects-title">Projects</h2>
+    <section class="section wrap" aria-labelledby="projects">
+      {{ cmd("projects", "ls ~/projects", "Projects") }}
+      <div class="panes">
         {% for p in projects %}
-        <article class="project">
+        <article class="pane">
           <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
-          <p class="project__url">{{ p.url|replace("https://", "") }}</p>
-          <p class="prose">{{ p.body }}</p>
+          <p class="meta path">{{ p.url|replace("https://", "") }}</p>
+          <p>{{ p.body }}</p>
         </article>
         {% endfor %}
       </div>
     </section>
 
-    <section class="section" id="experience" aria-labelledby="experience-title">
-      <div class="wrap">
-        <h2 id="experience-title">Experience</h2>
-        <ol class="timeline">
-          {% for job in experience %}
-          <li class="job">
-            <p class="job__dates">{{ job.dates }}</p>
-            <div class="job__body">
-              <h3>{{ job.org }}</h3>
-              <p class="job__role">{{ job.role }}</p>
-              {% if job.summary %}<p class="prose">{{ job.summary }}</p>{% endif %}
-              <ul class="points">
-                {% for pt in job.points %}<li>{{ pt }}</li>{% endfor %}
-              </ul>
-            </div>
-          </li>
-          {% endfor %}
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="skills" aria-labelledby="skills-title">
-      <div class="wrap">
-        <h2 id="skills-title">Skills</h2>
-        <dl class="skills">
-          {% for s in skills %}
-          <div>
-            <dt>{{ s.group }}</dt>
-            <dd>{{ s['items']|join(", ") }}</dd>
+    <section class="section wrap" aria-labelledby="experience">
+      {{ cmd("experience", "cat experience.log", "Experience") }}
+      <ol class="timeline">
+        {% for job in experience %}
+        <li class="job">
+          <p class="job__dates">{{ job.dates }}</p>
+          <div class="job__body">
+            <h3>{{ job.org }}</h3>
+            <p class="meta">{{ job.role }}</p>
+            {% if job.summary %}<p class="prose">{{ job.summary }}</p>{% endif %}
+            <ul class="points">
+              {% for pt in job.points %}<li>{{ pt }}</li>{% endfor %}
+            </ul>
           </div>
-          {% endfor %}
-        </dl>
-        <h2 class="subhead">Education and certifications</h2>
-        <ul class="certs">
-          {% for e in education %}
-          <li><span class="certs__name">{{ e.name }}</span> <span class="certs__detail">{{ e.detail }}, {{ e.year }}</span></li>
-          {% endfor %}
-        </ul>
-      </div>
+        </li>
+        {% endfor %}
+      </ol>
     </section>
 
-    <section class="section contact" id="contact" aria-labelledby="contact-title">
-      <div class="wrap">
-        <h2 id="contact-title">Contact</h2>
-        <p class="prose">{{ person.availability }} The quickest way to reach me is email.</p>
-        <p class="contact__email"><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
-        <ul class="contact__list">
-          {% if contact.phone %}<li><span>Phone and WhatsApp</span> <a href="{{ contact.phone|tel }}">{{ contact.phone }}</a></li>{% endif %}
-          <li><span>LinkedIn</span> <a href="{{ contact.linkedin }}">linkedin.com/in/philjnicholls</a></li>
-          <li><span>GitHub</span> <a href="{{ contact.github }}">github.com/philjnicholls</a></li>
-        </ul>
-      </div>
+    <section class="section wrap" aria-labelledby="skills">
+      {{ cmd("skills", "man phil", "Skills") }}
+      <dl class="skills">
+        {% for s in skills %}
+        <div>
+          <dt>{{ s.group }}</dt>
+          <dd>{{ s['items']|join(", ") }}</dd>
+        </div>
+        {% endfor %}
+      </dl>
+      <h2 class="cmd subhead"><span aria-hidden="true"><span class="cmd__prompt">$</span> ls ~/certs</span><span class="sr-only">Education and certifications</span></h2>
+      <ul class="certs">
+        {% for e in education %}
+        <li><span class="certs__name">{{ e.name }}</span> <span class="comment">{{ e.detail }}, {{ e.year }}</span></li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="section wrap contact" aria-labelledby="contact">
+      {{ cmd("contact", "cat ~/.contact", "Contact") }}
+      <p class="prose">{{ person.availability }} The quickest way to reach me is email.</p>
+      <p class="contact__email"><a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+      <ul class="contact__list">
+        {% if contact.phone %}<li><span>phone · whatsapp</span> <a href="{{ contact.phone|tel }}">{{ contact.phone }}</a></li>{% endif %}
+        <li><span>linkedin</span> <a href="{{ contact.linkedin }}">linkedin.com/in/philjnicholls</a></li>
+        <li><span>github</span> <a href="{{ contact.github }}">github.com/philjnicholls</a></li>
+      </ul>
     </section>
 {% endblock %}
