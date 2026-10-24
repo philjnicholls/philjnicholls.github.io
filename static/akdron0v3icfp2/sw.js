@@ -1,6 +1,6 @@
 // Generated at build time.
-const CACHE = 'desert-dash-2b5fcb7589f0';
-const FILES = ["./","assets/index-DaMTuvk1.js","assets/game-D8yb70cd.js","assets/qrcode-DG9RbAiA.js","index.html","icons/apple-touch-icon.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-512.png","manifest.webmanifest"];
+const CACHE = 'desert-dash-850c36b71db9';
+const FILES = ["./","assets/index-2YmdIiIO.js","assets/game-DUXgWUy3.js","assets/qrcode-DG9RbAiA.js","index.html","icons/apple-touch-icon.png","icons/icon-192.png","icons/icon-512.png","icons/maskable-512.png","manifest.webmanifest"];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting()));
