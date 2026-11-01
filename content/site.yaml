@@ -114,10 +114,24 @@ projects:
   - title: Guru Shishya
     url: https://gurushishya.app
     body: >-
-      A practice partner for Indian classical music. Students hear a short
-      phrase and play or sing it back, and are scored on notes, order and
-      timing, working through raga-based lessons from first steps to alap and
-      meend. A personal project, designed and built end to end.
+      A practice partner for Indian classical music: students hear a phrase,
+      play or sing it back, and get a score with feedback on specific notes.
+      The Django backend tracks pitch with pYIN, aligns attempts using dynamic
+      time warping and scores a recording in about 1.5 seconds, through worker
+      processes woken by PostgreSQL LISTEN/NOTIFY. Reviewer ratings recalibrate
+      the scoring, and a new fit is adopted only if it beats the current one in
+      cross-validation. Paddle subscriptions run on signed, replay-safe
+      webhooks, with Ansible deployment and 1,100+ tests. A personal project,
+      designed and built end to end.
+  - title: Made of Many
+    url: https://madeofmany.app
+    body: >-
+      Family-tree T-shirts. A step-by-step wizard works out the exact fractions
+      of each nationality in a family, puts them on the front and a "100%" line
+      on the back, then takes payment and sends the order to print-on-demand.
+      Reels and carousels are rendered automatically, with captions from Claude
+      and nothing posted until it's approved. A personal project, designed and
+      built end to end in Python.
 
 experience:
   - org: Israel Nature and Parks Authority
