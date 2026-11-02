@@ -1,6 +1,6 @@
 {
-  "name": "ריצת מדבר",
-  "short_name": "ריצת מדבר",
+  "name": "ריצה במדבר",
+  "short_name": "ריצה במדבר",
   "start_url": "./",
   "scope": "./",
   "display": "fullscreen",
